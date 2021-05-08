@@ -8,7 +8,7 @@
         ["module-resolver", {
             "root":["./src"],
             "alias":{
-                "utils":"./utils",
+                "utils":"./src/utils",
                 "routes":"./src/routes",
                 "pages":"./src/pages",
                 "components":"./src/components",
