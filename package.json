@@ -7,8 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "dev": "tsc && node bin/run.js",
-    "build": "tsc",
+    "dev": "babel src -d dist && node bin/run.js",
+    "build": "babel src -d dist",
     "prettier": "pretty-quick --staged",
     "prepare": "husky install"
   },
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
     "babel": "^6.23.0",
     "husky": "^6.0.0",
     "prettier": "^2.2.1",

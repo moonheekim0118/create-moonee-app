@@ -1,8 +1,11 @@
-import { cliOptions } from "./options";
+import cliOptions from "./options";
 import startCommandLine from "./cli";
 
 const run = () => {
-  startCommandLine(cliOptions);
+  const cliOptionMap = new Map(
+    cliOptions.map((option, index) => [index, option])
+  );
+  startCommandLine(cliOptionMap);
 };
 
 module.exports = () => {

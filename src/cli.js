@@ -2,7 +2,7 @@ import path from "path";
 import fs from "fs";
 import fse from "fs-extra";
 import terminalKit from "terminal-kit";
-import { defaultDirection, CLI_MESSAGES, TYPES } from "./options";
+import { defaultDirection, CLI_MESSAGES, TYPES } from "./constants";
 
 const term = terminalKit.terminal;
 const fsp = fs.promises;
@@ -22,7 +22,7 @@ const createDirectory = async (selectedOption, destDirName) => {
     const datas = await fsp.readdir(destDirPath);
     if (datas.length > 0) return TYPES.EXIST_TARGET;
   }
-
+  term.spinner();
   await fse.copy(targetDirPath, destDirPath);
   return selectedOption.type;
 };
@@ -49,10 +49,7 @@ const startCommandLine = async (OptionsMap) => {
   const selectedDir = await getDestDirName();
   const selectedType = await getOption(descriptions);
   const selectedOption = OptionsMap.get(selectedType.selectedIndex);
-
-  // find by description
   const resultType = await createDirectory(selectedOption, selectedDir);
-
   switch (resultType) {
     case TYPES.CREATE:
       term.cyan(CLI_MESSAGES.SUCCESS_MESSAGE);
