@@ -1,13 +1,14 @@
 {
   "name": "create-moonee-app",
   "version": "1.0.0",
-  "description": "this is boilerplate generator for TypeScript , Webpack and Babel",
+  "description": "this is boilerplate generator",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsc && node bin/run.js",
+    "build": "tsc",
     "prettier": "pretty-quick --staged",
     "prepare": "husky install"
   },
@@ -22,8 +23,15 @@
   },
   "homepage": "https://github.com/moonheekim0118/create-moonee-app#readme",
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "babel": "^6.23.0",
     "husky": "^6.0.0",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0"
+  },
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "terminal-kit": "^2.1.2"
   }
 }
