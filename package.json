@@ -18,5 +18,15 @@
   "bugs": {
     "url": "https://github.com/moonheekim0118/create-moonee-app/issues"
   },
-  "homepage": "https://github.com/moonheekim0118/create-moonee-app#readme"
+  "homepage": "https://github.com/moonheekim0118/create-moonee-app#readme",
+  "devDependencies": {
+    "husky": "^4.3.8",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  }
 }
