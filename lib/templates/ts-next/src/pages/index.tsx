@@ -1,17 +1,16 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-const Home = (): JSX.Element => {
+const Index = (): JSX.Element => {
   return (
     <Container>
-      <MainTitle>Welcome to React With TypeScript Bolierplate!</MainTitle>
+      <MainTitle>Welcome to Next.js With TypeScript Bolierplate!</MainTitle>
       <SubContents>
         <SubTitle>✅ Now we have configured...</SubTitle>
         <ul>
-          <List>React, React Router, TypeScript</List>
+          <List>React, Next.js, TypeScript</List>
           <List>Emotion 11</List>
           <List>Babel</List>
-          <List>Webpack</List>
           <List>Prettier, ESLint</List>
         </ul>
         <SubTitle>✅Do you have Any Questions or Find some Bug?</SubTitle>
@@ -64,4 +63,4 @@ const Anchor = styled.a`
   color: #fff;
 `;
 
-export default Home;
+export default Index;
