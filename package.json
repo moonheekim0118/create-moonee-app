@@ -1,9 +1,11 @@
 {
   "name": "create-moonee-app",
-  "version": "0.0.0",
+  "version": "0.0.9",
   "description": "bolierplate generator",
-  "main": "./dist/index.js",
-  "bin": "./bin/run",
+  "main": "./bin/create-moonee-app.js",
+  "bin": {
+    "create-moonee-app": "./bin/create-moonee-app.js"
+  },
   "directories": {
     "lib": "lib"
   },
@@ -15,7 +17,8 @@
     "generator"
   ],
   "scripts": {
-    "dev": "babel src -d dist && node bin/run.js",
+    "create-moonee-app": "node bin/create-moonee-app.js",
+    "dev": "babel src -d dist && node bin/create-moonee-app.js",
     "build": "babel src -d dist",
     "prettier": "pretty-quick --staged",
     "prepare": "husky install"

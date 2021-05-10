@@ -52,10 +52,6 @@ const getOption = async descriptions => {
 
 const getDestDirName = async () => {
   term.cyan(_constants.CLI_MESSAGES.PRJOECT_NAME_QUESTION);
-  process.stdin.resume();
-  process.on("SIGINT", function () {
-    console.log("Got SIGINT.  Press Control-D to exit.");
-  });
   const input = await term.inputField({}).promise;
   const re = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$|([<>:"\/\\|?*])|(\.|\s)$/gi;
 
