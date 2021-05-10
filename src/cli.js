@@ -35,7 +35,13 @@ const getOption = async (descriptions) => {
 };
 
 const getDestDirName = async () => {
+  term.cyan(CLI_MESSAGES.PRJOECT_NAME_QUESTION);
   const input = await term.inputField({}).promise;
+  const re = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$|([<>:"\/\\|?*])|(\.|\s)$/gi;
+  if (re.test(input) && input !== ".") {
+    term.red(CLI_MESSAGES.INVALID_DIR_NAME_ERROR);
+    return getDestDirName();
+  }
   if (!input) return defaultDirection;
   else return input;
 };
@@ -44,8 +50,6 @@ const startCommandLine = async (OptionsMap) => {
   try {
     const optionsValue = [...OptionsMap.values()];
     const descriptions = optionsValue.map((option) => option.description);
-
-    term.cyan(CLI_MESSAGES.PRJOECT_NAME_QUESTION);
 
     const selectedDir = await getDestDirName();
     const selectedType = await getOption(descriptions);

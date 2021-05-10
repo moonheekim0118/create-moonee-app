@@ -11,6 +11,7 @@ export const CLI_MESSAGES = {
     "Your selected Directory is already existed. Please select other directory\n",
   EXISTED_TARGET_ERROR:
     "Your selected Directory is already taken. Please select other directory or empty space\n",
+  INVALID_DIR_NAME_ERROR: "Invalid Directory name\n",
 };
 
 export const TYPES = {
