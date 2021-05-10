@@ -1,8 +1,7 @@
-// CLI 함수들 testing
 var _functions = require("../dist/utils");
+var _datas = require("./data");
 var should = require("chai").should();
 var cliOptions = require("../dist/options").default;
-var _datas = require("./data");
 
 describe("Validate PathName", function () {
   const tests = [

@@ -42,8 +42,8 @@ export const getOption = async (descriptions) => {
 export const getDestDirName = async () => {
   term.cyan(CLI_MESSAGES.PRJOECT_NAME_QUESTION);
   const input = await term.inputField({}).promise;
-  const isIlligal = validatePathName(input);
-  if (isIlligal) {
+  const isIllegal = validatePathName(input);
+  if (isIllegal) {
     term.red(CLI_MESSAGES.INVALID_DIR_NAME_ERROR);
     return getDestDirName();
   }

@@ -53,5 +53,5 @@ npx create-moonee-app
 
 ## I have plans to do..
 
-- Test code for this package
-- Testing Code Setup for Templates (maybe react testing library)
+- [x] Test code for this package
+- [ ] Testing Code Setup for Templates (maybe react testing library)
