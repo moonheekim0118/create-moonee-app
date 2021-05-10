@@ -1,7 +1,7 @@
 {
-  "name": "js-react-geneorator",
+  "name": "js-react",
   "version": "1.0.0",
-  "description": "javascript react generator",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --mode=development --open --hot",

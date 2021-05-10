@@ -1,11 +1,19 @@
 {
   "name": "create-moonee-app",
-  "version": "1.0.0",
-  "description": "this is boilerplate generator",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "bolierplate generator",
+  "main": "./dist/index.js",
+  "bin": "./bin/run",
   "directories": {
     "lib": "lib"
   },
+  "keywords": [
+    "bolierplate",
+    "react",
+    "nextJs",
+    "typescript",
+    "generator"
+  ],
   "scripts": {
     "dev": "babel src -d dist && node bin/run.js",
     "build": "babel src -d dist",
@@ -16,10 +24,14 @@
     "type": "git",
     "url": "git+https://github.com/moonheekim0118/create-moonee-app.git"
   },
-  "author": "moonhee kim",
-  "license": "ISC",
+  "author": {
+    "name": "moonhee kim",
+    "email": "hellomooneekim@gmail.com"
+  },
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/moonheekim0118/create-moonee-app/issues"
+    "url": "https://github.com/moonheekim0118/create-moonee-app/issues",
+    "email": "helloomooneekim@gmail.com"
   },
   "homepage": "https://github.com/moonheekim0118/create-moonee-app#readme",
   "devDependencies": {

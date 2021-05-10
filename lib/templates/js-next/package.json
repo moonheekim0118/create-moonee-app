@@ -1,14 +1,14 @@
 {
   "name": "js-next",
   "version": "1.0.0",
-  "description": "bolierplate for Next.js app with JavaScript",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
-  "author": "moonhee kim",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.4.0",

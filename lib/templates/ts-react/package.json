@@ -1,13 +1,13 @@
 {
   "name": "ts-react",
   "version": "1.0.0",
-  "description": "react for Typescript bolierplate",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --mode=development --open --hot",
     "build": "webpack --mode=production"
   },
-  "author": "moonhee kim",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.14.0",
