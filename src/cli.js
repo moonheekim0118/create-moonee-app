@@ -16,21 +16,21 @@ const createDirectory = async (selectedOption, destDirName) => {
   const destDirPath = path.join(process.cwd(), destDirName);
 
   const isExistDestDirPath = fs.existsSync(destDirPath);
-
+  term.spinner();
   if (destDirName !== "." && isExistDestDirPath) return TYPES.EXIST_DEST;
   if (destDirName === ".") {
     const datas = await fsp.readdir(destDirPath);
     if (datas.length > 0) return TYPES.EXIST_TARGET;
   }
-  term.spinner();
+
   await fse.copy(targetDirPath, destDirPath);
   return selectedOption.type;
 };
 
-const getOption = async (dscriptions) => {
-  return await term.singleColumnMenu(dscriptions, {
+const getOption = async (descriptions) => {
+  return await term.singleColumnMenu(descriptions, {
     style: term.green,
-    selectedStyle: term.bold.black.bgWhite,
+    selectedStyle: term.bold.black.bgYellow,
   }).promise;
 };
 

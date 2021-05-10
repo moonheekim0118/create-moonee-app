@@ -5,12 +5,12 @@ export const CLI_MESSAGES = {
   SELECT_OPTION_QUESTION: "Select Option",
   SUCCESS_MESSAGE:
     "Your boilerplate is Successfully created! it's time to hack!",
-  FAILURE_MESSAGE: "We can't create bolierplate now. Please try again",
+  FAILURE_MESSAGE: "We can't create bolierplate now. Please try again\n",
   QUIT_MESSAGE: "Bye!",
   EXISTED_DEST_ERROR:
-    "Your selected Directory is already existed. Please select other directory",
+    "Your selected Directory is already existed. Please select other directory\n",
   EXISTED_TARGET_ERROR:
-    "Your selected Directory is already taken. Please select other directory or empty space",
+    "Your selected Directory is already taken. Please select other directory or empty space\n",
 };
 
 export const TYPES = {
@@ -19,3 +19,12 @@ export const TYPES = {
   EXIST_DEST: "EXIST_DEST",
   EXIST_TARGET: "EXIST_TARGET",
 };
+
+export const LOADING_LIST = [
+  "Installing React...",
+  "Configure Babel and Webpack...",
+  "Configure ESLint and Prettier...",
+  "Add some simple source...",
+  "Add some routing...",
+  "It's almost done...",
+];
