@@ -3,11 +3,16 @@ import fs from "fs";
 import fse from "fs-extra";
 import terminalKit from "terminal-kit";
 import { defaultDirection, CLI_MESSAGES, TYPES } from "./constants";
+import {
+  validatePathName,
+  extractMapValues,
+  extractDescription,
+} from "./utils";
 
 const term = terminalKit.terminal;
 const fsp = fs.promises;
 
-const createDirectory = async (selectedOption, destDirName) => {
+export const createDirectory = async (selectedOption, destDirName) => {
   if (!selectedOption) return;
   if (selectedOption.type === TYPES.QUIT) return TYPES.QUIT;
 
@@ -27,18 +32,18 @@ const createDirectory = async (selectedOption, destDirName) => {
   return selectedOption.type;
 };
 
-const getOption = async (descriptions) => {
+export const getOption = async (descriptions) => {
   return await term.singleColumnMenu(descriptions, {
     style: term.green,
     selectedStyle: term.bold.black.bgYellow,
   }).promise;
 };
 
-const getDestDirName = async () => {
+export const getDestDirName = async () => {
   term.cyan(CLI_MESSAGES.PRJOECT_NAME_QUESTION);
   const input = await term.inputField({}).promise;
-  const re = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$|([<>:"\/\\|?*])|(\.|\s)$/gi;
-  if (re.test(input) && input !== ".") {
+  const isIlligal = validatePathName(input);
+  if (isIlligal) {
     term.red(CLI_MESSAGES.INVALID_DIR_NAME_ERROR);
     return getDestDirName();
   }
@@ -48,30 +53,32 @@ const getDestDirName = async () => {
 
 const startCommandLine = async (OptionsMap) => {
   try {
-    const optionsValue = [...OptionsMap.values()];
-    const descriptions = optionsValue.map((option) => option.description);
+    const optionsValue = extractMapValues(OptionsMap);
+    const descriptions = extractDescription(optionsValue);
 
     const selectedDir = await getDestDirName();
     const selectedType = await getOption(descriptions);
     const selectedOption = OptionsMap.get(selectedType.selectedIndex);
     const resultType = await createDirectory(selectedOption, selectedDir);
-    switch (resultType) {
-      case TYPES.CREATE:
+    const assignAction = {
+      [TYPES.CREATE]: () => {
         term.cyan(CLI_MESSAGES.SUCCESS_MESSAGE);
         return process.exit(0);
-      case TYPES.QUIT:
+      },
+      [TYPES.QUIT]: () => {
         term.white(CLI_MESSAGES.QUIT_MESSAGE);
         return process.exit(0);
-      case TYPES.EXIST_DEST:
+      },
+      [TYPES.EXIST_DEST]: () => {
         term.red(CLI_MESSAGES.EXISTED_DEST_ERROR);
         return startCommandLine(OptionsMap);
-      case TYPES.EXIST_TARGET:
+      },
+      [TYPES.EXIST_TARGET]: () => {
         term.red(CLI_MESSAGES.EXISTED_TARGET_ERROR);
         return startCommandLine(OptionsMap);
-      default:
-        term.red(CLI_MESSAGES.FAILURE_MESSAGE);
-        return process.exit(0);
-    }
+      },
+    };
+    assignAction[resultType]();
   } catch (error) {
     term.red(error);
     return process.exit(0);

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports.default = exports.getDestDirName = exports.getOption = exports.createDirectory = void 0;
 
 var _path = _interopRequireDefault(require("path"));
 
@@ -14,6 +14,8 @@ var _fsExtra = _interopRequireDefault(require("fs-extra"));
 var _terminalKit = _interopRequireDefault(require("terminal-kit"));
 
 var _constants = require("./constants");
+
+var _utils = require("./utils");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -43,6 +45,8 @@ const createDirectory = async (selectedOption, destDirName) => {
   return selectedOption.type;
 };
 
+exports.createDirectory = createDirectory;
+
 const getOption = async descriptions => {
   return await term.singleColumnMenu(descriptions, {
     style: term.green,
@@ -50,12 +54,14 @@ const getOption = async descriptions => {
   }).promise;
 };
 
+exports.getOption = getOption;
+
 const getDestDirName = async () => {
   term.cyan(_constants.CLI_MESSAGES.PRJOECT_NAME_QUESTION);
   const input = await term.inputField({}).promise;
-  const re = /^(con|prn|aux|nul|com[0-9]|lpt[0-9])$|([<>:"\/\\|?*])|(\.|\s)$/gi;
+  const isIlligal = (0, _utils.validatePathName)(input);
 
-  if (re.test(input) && input !== ".") {
+  if (isIlligal) {
     term.red(_constants.CLI_MESSAGES.INVALID_DIR_NAME_ERROR);
     return getDestDirName();
   }
@@ -63,36 +69,35 @@ const getDestDirName = async () => {
   if (!input) return _constants.defaultDirection;else return input;
 };
 
+exports.getDestDirName = getDestDirName;
+
 const startCommandLine = async OptionsMap => {
   try {
-    const optionsValue = [...OptionsMap.values()];
-    const descriptions = optionsValue.map(option => option.description);
+    const optionsValue = (0, _utils.extractMapValues)(OptionsMap);
+    const descriptions = (0, _utils.extractDescription)(optionsValue);
     const selectedDir = await getDestDirName();
     const selectedType = await getOption(descriptions);
     const selectedOption = OptionsMap.get(selectedType.selectedIndex);
     const resultType = await createDirectory(selectedOption, selectedDir);
-
-    switch (resultType) {
-      case _constants.TYPES.CREATE:
+    const assignAction = {
+      [_constants.TYPES.CREATE]: () => {
         term.cyan(_constants.CLI_MESSAGES.SUCCESS_MESSAGE);
         return process.exit(0);
-
-      case _constants.TYPES.QUIT:
+      },
+      [_constants.TYPES.QUIT]: () => {
         term.white(_constants.CLI_MESSAGES.QUIT_MESSAGE);
         return process.exit(0);
-
-      case _constants.TYPES.EXIST_DEST:
+      },
+      [_constants.TYPES.EXIST_DEST]: () => {
         term.red(_constants.CLI_MESSAGES.EXISTED_DEST_ERROR);
         return startCommandLine(OptionsMap);
-
-      case _constants.TYPES.EXIST_TARGET:
+      },
+      [_constants.TYPES.EXIST_TARGET]: () => {
         term.red(_constants.CLI_MESSAGES.EXISTED_TARGET_ERROR);
         return startCommandLine(OptionsMap);
-
-      default:
-        term.red(_constants.CLI_MESSAGES.FAILURE_MESSAGE);
-        return process.exit(0);
-    }
+      }
+    };
+    assignAction[resultType]();
   } catch (error) {
     term.red(error);
     return process.exit(0);

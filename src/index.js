@@ -1,10 +1,9 @@
 import cliOptions from "./options";
 import startCommandLine from "./cli";
+import { arrayToMap } from "./utils";
 
 const run = () => {
-  const cliOptionMap = new Map(
-    cliOptions.map((option, index) => [index, option])
-  );
+  const cliOptionMap = arrayToMap(cliOptions);
   startCommandLine(cliOptionMap);
 };
 
