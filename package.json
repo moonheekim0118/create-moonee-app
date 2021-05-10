@@ -1,6 +1,6 @@
 {
   "name": "create-moonee-app",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "bolierplate generator",
   "main": "./bin/create-moonee-app.js",
   "bin": {
