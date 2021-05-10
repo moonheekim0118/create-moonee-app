@@ -51,7 +51,7 @@ npx create-moonee-app
 - Babel and tsconfig configured
 - ESLint, Prettier and Husky hook configured
 
-# I'm gonna add..
+## I have plans to do..
 
 - Test code for this package
 - Testing Code Setup for Templates (maybe react testing library)
