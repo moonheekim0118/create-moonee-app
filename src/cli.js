@@ -8,51 +8,36 @@ const term = terminalKit.terminal;
 const fsp = fs.promises;
 
 const createDirectory = async (selectedOption, destDirName) => {
-  try {
-    if (!selectedOption) return;
-    if (selectedOption.type === TYPES.QUIT) return TYPES.QUIT;
+  if (!selectedOption) return;
+  if (selectedOption.type === TYPES.QUIT) return TYPES.QUIT;
 
-    const targetDirectionName = `../lib/templates/${selectedOption.templateName}`;
-    const targetDirPath = path.join(__dirname, targetDirectionName);
-    const destDirPath = path.join(process.cwd(), destDirName);
+  const targetDirectionName = `../lib/templates/${selectedOption.templateName}`;
+  const targetDirPath = path.join(__dirname, targetDirectionName);
+  const destDirPath = path.join(process.cwd(), destDirName);
 
-    const isExistDestDirPath = fs.existsSync(destDirPath);
-    if (destDirName !== "." && isExistDestDirPath) return TYPES.EXIST_DEST;
-    if (destDirName === ".") {
-      const datas = await fsp.readdir(destDirPath);
-      if (datas.length > 0) return TYPES.EXIST_TARGET;
-    }
-
-    term.spinner();
-    await fse.copy(targetDirPath, destDirPath);
-    return selectedOption.type;
-  } catch (error) {
-    term.red(error);
-    return process.exit(0);
+  const isExistDestDirPath = fs.existsSync(destDirPath);
+  if (destDirName !== "." && isExistDestDirPath) return TYPES.EXIST_DEST;
+  if (destDirName === ".") {
+    const datas = await fsp.readdir(destDirPath);
+    if (datas.length > 0) return TYPES.EXIST_TARGET;
   }
+
+  term.spinner();
+  await fse.copy(targetDirPath, destDirPath);
+  return selectedOption.type;
 };
 
 const getOption = async (descriptions) => {
-  try {
-    return await term.singleColumnMenu(descriptions, {
-      style: term.green,
-      selectedStyle: term.bold.black.bgYellow,
-    }).promise;
-  } catch (error) {
-    term.red(error);
-    return process.exit(0);
-  }
+  return await term.singleColumnMenu(descriptions, {
+    style: term.green,
+    selectedStyle: term.bold.black.bgYellow,
+  }).promise;
 };
 
 const getDestDirName = async () => {
-  try {
-    const input = await term.inputField({}).promise;
-    if (!input) return defaultDirection;
-    else return input;
-  } catch (error) {
-    term.red(error);
-    return process.exit(0);
-  }
+  const input = await term.inputField({}).promise;
+  if (!input) return defaultDirection;
+  else return input;
 };
 
 const startCommandLine = async (OptionsMap) => {
