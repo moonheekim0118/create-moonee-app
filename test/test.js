@@ -24,18 +24,6 @@ describe("Validate PathName", function () {
   });
 });
 
-describe("Array To Map", () => {
-  it("should be correct Map", function () {
-    const res = _functions.arrayToMap(cliOptions);
-    const typeCheck = res instanceof Map;
-    typeCheck.should.equal(true);
-  });
-});
-
-describe("Extract Map Values", () => {
-  const res = _functions.arrayToMap(cliOptions);
-});
-
 describe("Map Related Functions", () => {
   const map = _functions.arrayToMap(cliOptions);
   const valuesArray = _functions.extractMapValues(map);
