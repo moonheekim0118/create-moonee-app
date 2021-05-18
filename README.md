@@ -14,12 +14,13 @@
 npm i -g create-moonee-app
 npx create-moonee-app
 ```
+( 패키지 다운로드 없이 npx 명령어로만 실행되도록 고치는 중...)
 
 <br/>
 
 ## you can Select from..
 
-### 1. React with JavaScript bolierplate
+### 1. React with JavaScript boilerplate
 
 - React
 - React-router
@@ -27,7 +28,7 @@ npx create-moonee-app
 - Webpack, Babel configured
 - ESLint, Prettier and Husky hook configured
 
-### 2. React with TypeScript bolierplate
+### 2. React with TypeScript boilerplate
 
 - React
 - React-router
@@ -36,14 +37,14 @@ npx create-moonee-app
 - Webpack, Babel and tsconfig configured
 - ESLint, Prettier and Husky hook configured
 
-### 3. Next.js with JavaScript bolierplate
+### 3. Next.js with JavaScript boilerplate
 
 - React , Next.js
 - Emotion 11
 - Babel configured
 - ESLint, Prettier and Husky hook configured
 
-### 4. Next.js with TypeScript bolierplate
+### 4. Next.js with TypeScript boilerplate
 
 - React , Next.js
 - Emotion 11
