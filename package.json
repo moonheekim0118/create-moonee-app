@@ -1,24 +1,22 @@
 {
   "name": "create-moonee-app",
-  "version": "0.0.10",
-  "description": "bolierplate generator",
-  "main": "./bin/create-moonee-app.js",
-  "bin": {
-    "create-moonee-app": "./bin/create-moonee-app.js"
-  },
+  "version": "1.0.4",
+  "description": "boilerplate generator",
+  "main": "index.js",
+  "bin": "./bin/run",
   "directories": {
     "lib": "lib"
   },
   "keywords": [
-    "bolierplate",
+    "boilerplate",
     "react",
     "nextJs",
     "typescript",
     "generator"
   ],
   "scripts": {
-    "create-moonee-app": "node bin/create-moonee-app.js",
-    "dev": "babel src -d dist && node bin/create-moonee-app.js",
+    "create-moonee-app": "node ./bin/run",
+    "dev": "babel src -d dist && node ./bin/run",
     "build": "babel src -d dist",
     "prettier": "pretty-quick --staged",
     "prepare": "husky install",
